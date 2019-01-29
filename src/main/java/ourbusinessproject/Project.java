@@ -4,7 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
+
 @Entity
+@OptimisticLocking(type = OptimisticLockType.VERSION)
 public class Project {
 
     @Id
@@ -17,10 +21,13 @@ public class Project {
 
     private String description;
 
-
     @NotNull
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Enterprise enterprise;
+
+    @Version
+    @Column(name="VERSION")
+    private long versionNum;
 
     public Project() {}
 
@@ -69,4 +76,8 @@ public class Project {
         
         this.enterprise.addProject(this);
     }
+
+	public Long getVersion() {
+		return versionNum;
+	}
 }

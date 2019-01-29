@@ -82,6 +82,12 @@ Vérifiez que l'ensemble des tests passent toujours. Si ce n'est pas le cas, mod
 Vérifiez que l'ensemble des tests passent toujours. Si ce n'est pas le cas, modifiez votre code jusqu'à obtenir l'ensemble des tests au vert.
 4. Expliquez clairement, en français, ce qui se passe dans le test _"testOptimisticLockingOnConcurrentProjectModification"_.
 
-    _// A COMPLETER_
-
+    Dans ce test, on récupère un projet de la base de données.
+    On modifie le nom de ce projet grâce à une instruction SQL directement transmise 
+    à la base. En parallèle, on modifie le nom de ce projet grâce à l'EntityManager.
+    Etant donné que la base de données et le contexte de persistance n'ont pas été
+    synchronisés, la modification effectuée avec l'instruction SQL n'est pas effective
+    dans le contexte de persistance. Ce dernier essaie donc d'effectuer une modification
+    sans avoir le dernier numéro de version, lorsque ceci se produit, une exception 
+    "OptimisticLockException" est lancée.
 

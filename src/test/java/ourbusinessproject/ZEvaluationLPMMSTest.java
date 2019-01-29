@@ -122,8 +122,6 @@ public class ZEvaluationLPMMSTest {
         // and it is attached to project
         assertThat(enterprise2.getProjects(), hasItem(savedProject));
     }
-
-    /* ****
     
     @Test
     public void testProjectsAreVersionned() {
@@ -162,7 +160,5 @@ public class ZEvaluationLPMMSTest {
         // an optimistic lock exception is thrown
 
     }
-
-    ***** */
 
 }
