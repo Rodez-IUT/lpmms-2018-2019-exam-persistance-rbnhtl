@@ -82,7 +82,11 @@ public class Enterprise {
         if (projects == null) {
             projects = new ArrayList<>();
         }
+        
         projects.add(project);
     }
-
+    
+    public void removeProject(Project project) {
+    	projects.remove(project);
+    }
 }

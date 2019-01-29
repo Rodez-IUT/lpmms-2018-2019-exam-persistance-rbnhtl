@@ -54,6 +54,19 @@ public class Project {
     }
 
     public void setEnterprise(Enterprise enterprise) {
+    	
+    	/* 
+    	 * Lors de la modification d'une entreprise, on vérifie si le projet avait 
+    	 * déjà une entreprise, si oui, on enlève le projet de l'ancienne entreprise
+    	 * puis on l'ajoute dans la nouvelle
+    	 */
+    	
+    	if (this.enterprise != null) {
+    		this.enterprise.removeProject(this);
+    	}
+    	
         this.enterprise = enterprise;
+        
+        this.enterprise.addProject(this);
     }
 }
